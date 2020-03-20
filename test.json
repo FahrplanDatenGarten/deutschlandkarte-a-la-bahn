@@ -1,6 +1,7 @@
 {
-    "Berlin Hbf":{
+    "8011160":{
         "stationId": 8011160,
+        "stationName": "BerlinHbf",
         "duration": {
             "008000105": 3,
             "008011111": 10,
@@ -9,8 +10,9 @@
         "lat": 51.223,
         "lon": 8.64
         },
-    "Frankfurt(Main)Hbf": {
+    "8000105": {
         "stationId": 8000105,
+        "stationName": "Frankfurt(Main)Hbf",
         "duration": {
             "008011160": 3,
             "008011111": 6,
@@ -20,8 +22,9 @@
         "lat": 50.100,
         "lon": 8.64
         },
-    "Bahnhof3":{
+    "8011111":{
         "stationId": 8011111,
+        "stationName": "Bahnhof3",
         "duration": {
             "008011160": 3,
             "008000105": 6,
@@ -30,8 +33,9 @@
         "lat": 51.223,
         "lon": 8.64
         },
-    "Bahnhof4":{
+    "8011112":{
         "stationId": 8011112,
+        "stationName": "Bahnhof4",
         "duration": {
           "008011160": 4,
           "008000105": 3,
