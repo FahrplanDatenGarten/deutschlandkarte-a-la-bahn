@@ -5,41 +5,24 @@ import statistics
 
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
-from pyhafas import HafasClient
-from pyhafas.profile import DBProfile
 
 from core.models import (Agency, Source, Stop, StopID, StopIDKind,
                          StopLocation, StopName)
+from pyhafas import HafasClient
+from pyhafas.profile import DBProfile
 
+from ... import STOPS
 from ...models import Connection
 
 
 class Command(BaseCommand):
     help = 'Imports the distances between the listed stops'
-    stops = [
-        8011160,
-        8000080,
-        8010085,
-        8000085,
-        8000086,
-        8000098,
-        8000105,
-        8002549,
-        8000152,
-        8000191,
-        8000207,
-        8010205,
-        8000261,
-        8000284,
-        8000096,
-        8000128,
-    ]
 
     def handle(self, *args, **options):
         client = HafasClient(DBProfile())
 
-        for start in self.stops:
-            for end in self.stops:
+        for start in STOPS:
+            for end in STOPS:
                 if start == end:
                     continue
 
