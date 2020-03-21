@@ -11,4 +11,5 @@ urlpatterns = [
             template_name="netzkarte/index.html"),
         name='index'),
     path('api', views.convert_toJson, name='api'),
+    path('d3api', views.d3_tree, name='d3api'),
 ]
