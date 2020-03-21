@@ -1,0 +1,51 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "group": 1
+    },
+    {
+      "id": "n2",
+      "group": 2
+    },
+    {
+      "id": "n3",
+      "group": 1
+    },
+    {
+      "id": "n4",
+      "group": 1
+    },
+    {
+      "id": "n5",
+      "group": 1
+    }
+  ],
+  "links": [
+    {
+      "source": "n1",
+      "target": "n2",
+      "duration": 1
+    },
+    {
+      "source": "n4",
+      "target": "n3",
+      "duration": 100
+    },
+    {
+      "source": "n4",
+      "target": "n1",
+      "duration": 100
+    },
+    {
+      "source": "n3",
+      "target": "n1",
+      "duration": 200
+    },
+    {
+      "source": "n5",
+      "target": "n1",
+      "duration": 2000
+    }
+  ]
+}

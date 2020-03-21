@@ -1,0 +1,82 @@
+{
+  "nodes": [
+    {
+      "id": "BerlinHbf",
+      "group": 1
+    },
+    {
+      "id": "Frankfurt(Main)Hbf",
+      "group": 1
+    },
+    {
+      "id": "Bahnhof3",
+      "group": 1
+    },
+    {
+      "id": "Bahnhof4",
+      "group": 1
+    }
+  ],
+  "links": [
+    {
+      "source": "BerlinHbf",
+      "target": "Frankfurt(Main)Hbf",
+      "duration": 3
+    },
+    {
+      "source": "BerlinHbf",
+      "target": "Bahnhof3",
+      "duration": 10
+    },
+    {
+      "source": "BerlinHbf",
+      "target": "Bahnhof4",
+      "duration": 4
+    },
+    {
+      "source": "Frankfurt(Main)Hbf",
+      "target": "Bahnhof3",
+      "duration": 3
+    },
+    {
+      "source": "Frankfurt(Main)Hbf",
+      "target": "BerlinHbf",
+      "duration": 6
+    },
+    {
+      "source": "Frankfurt(Main)Hbf",
+      "target": "Bahnhof4",
+      "duration": 3
+    },
+    {
+      "source": "Bahnhof3",
+      "target": "Bahnhof4",
+      "duration": 3
+    },
+    {
+      "source": "Bahnhof3",
+      "target": "BerlinHbf",
+      "duration": 6
+    },
+    {
+      "source": "Bahnhof3",
+      "target": "Frankfurt(Main)Hbf",
+      "duration": 3
+    },
+    {
+      "source": "Bahnhof4",
+      "target": "Bahnhof3",
+      "duration": 4
+    },
+    {
+      "source": "Bahnhof4",
+      "target": "Frankfurt(Main)Hbf",
+      "duration": 3
+    },
+    {
+      "source": "Bahnhof4",
+      "target": "BerlinHbf",
+      "duration": 3
+    }
+  ]
+}
