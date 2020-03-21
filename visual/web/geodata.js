@@ -11,7 +11,7 @@ function createMap() {
 
     var promises = [
         d3.json("4_niedrig.geojson"),
-        d3.json("test.json")
+        d3.json("https://fahrplandatengarten.de/netzkarte/api")
     ];
     Promise.all(promises).then(ready);
 
