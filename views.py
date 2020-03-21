@@ -13,11 +13,13 @@ from . import STOPS
 
 
 def convert_toJson(request):
-    returnDict = {}
+    returnDict = {
+        'connections': {}
+    }
 
     for stop_id in STOPS:
         stop = Stop.objects.get(stopid__name=stop_id)
-        returnDict[stop_id] = {
+        returnDict['connections'][stop_id] = {
             'stationID': stop_id,
             'stationName': stop.stopname_set.first().name,
             'duration': {c.stop.get(
@@ -25,5 +27,15 @@ def convert_toJson(request):
             'lat': stop.stoplocation_set.first().latitude if stop.stoplocation_set.count() else 0,
             'lon': stop.stoplocation_set.first().longitude if stop.stoplocation_set.count() else 0,
         }
+
+    print(returnDict)
+
+    returnDict['lines'] = {'nodes': [], 'links': []}
+    for _, value in returnDict['connections'].items():
+        returnDict['lines']['nodes'].append({'id': value['stationName'], 'group': 1})
+        for stop_id, duration in value['duration'].items():
+            returnDict['lines']['links'].append({'source': value['stationName'],
+                                 'target': returnDict['connections'][stop_id]['stationName'],
+                                 'duration': duration})
 
     return JsonResponse(returnDict, encoder=DjangoJSONEncoder)
