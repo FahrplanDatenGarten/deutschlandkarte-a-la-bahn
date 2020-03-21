@@ -1,9 +1,21 @@
-from django.shortcuts import render
-from django.urls import path
+import datetime
+import json
+import os
 
-from . import views
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import JsonResponse
 
-app_name = 'netzkarte'
-urlpatterns = [
-    path('netzkarte', views.gtfsexport, name='netzkarte')
-]
+from core import models
+
+
+def testjson(request):
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "./test.json"), 'r') as json_file:
+        demoJson = json.load(json_file)
+
+    return JsonResponse(demoJson)
+
+
+def convert_toJson(request):
+    returnDict = {}
+
+    return JsonResponse(returnDict, encoder=DjangoJSONEncoder)
