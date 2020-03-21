@@ -50,8 +50,8 @@ def d3_tree(request):
     for stop_id in STOPS:
         stop = Stop.objects.get(stopid__name=stop_id)
         loc = [
+            stop.stoplocation_set.first().longitude if stop.stoplocation_set.count() else 0,
             stop.stoplocation_set.first().latitude if stop.stoplocation_set.count() else 0,
-            stop.stoplocation_set.first().longitude if stop.stoplocation_set.count() else 0
         ]
 
         returnDict['stations'].append({
@@ -65,8 +65,8 @@ def d3_tree(request):
 
             next_stop = Stop.objects.get(stopid__name=next_stop_id)
             next_loc = [
-                stop.stoplocation_set.first().latitude if stop.stoplocation_set.count() else 0,
-                stop.stoplocation_set.first().longitude if stop.stoplocation_set.count() else 0
+                next_stop.stoplocation_set.first().longitude if next_stop.stoplocation_set.count() else 0,
+                next_stop.stoplocation_set.first().latitude if next_stop.stoplocation_set.count() else 0,
             ]
 
             duration = Connection.objects.filter(
