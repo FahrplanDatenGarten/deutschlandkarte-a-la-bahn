@@ -26,11 +26,17 @@ function createMap() {
                 .projection(projection))
             .attr("fill", "red");
 
-        for(var k in parm[1]){
-            console.log(parm[1][k])
-            
-        }
-
+        svg1.append("g")
+            .selectAll("circle")
+            .data(Object.values(parm[1]))
+            .enter()
+                .append("circle")               
+                    .attr("r", 5)
+                    .attr("fill", "green")
+                    .attr("transform", function(d, i){
+                        return "translate(" + projection([d.lon, d.lat])+")"
+                    })
+                    
     }
 
 }
