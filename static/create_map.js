@@ -23,7 +23,7 @@ function ready(param) {
         .append("path")
         .attr("d", d3.geoPath()
             .projection(projection))
-        .attr("fill", "#EC0016");
+        .attr("fill", "#C0E1D7");
 
     var lineGenerator = d3.line();
     var pathGroup = svg1.append("g");
@@ -49,7 +49,7 @@ function ready(param) {
         .enter()
         .append("circle")
         .attr("r", 5)
-        .attr("fill", "#ffd800")
+        .attr("fill", "#EC0016")
         .attr("transform", function (d, i) {
             return "translate(" + projection(d.location) + ")"
         })
