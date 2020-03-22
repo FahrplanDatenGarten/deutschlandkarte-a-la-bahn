@@ -31,15 +31,21 @@ def convert_toJson(request):
 
     returnDict['lines'] = {'nodes': [], 'links': []}
     for _, value in returnDict['connections'].items():
-        returnDict['lines']['nodes'].append({'id': value['stationName'], 'group': 1})
+        returnDict['lines']['nodes'].append(
+            {'id': value['stationName'], 'group': 1})
         for stop_id, duration in value['duration'].items():
-            returnDict['lines']['links'].append({
-                'source': [value['lat'], value['lon']],
-                'target': [returnDict['connections'][stop_id]['lat'], returnDict['connections'][stop_id]['lon']],
-                'duration': duration
-            })
+            returnDict['lines']['links'].append(
+                {
+                    'source': [
+                        value['lat'],
+                        value['lon']],
+                    'target': [
+                        returnDict['connections'][stop_id]['lat'],
+                        returnDict['connections'][stop_id]['lon']],
+                    'duration': duration})
 
     return JsonResponse(returnDict, encoder=DjangoJSONEncoder)
+
 
 def d3_tree(request):
     returnDict = {
@@ -72,7 +78,8 @@ def d3_tree(request):
             duration = Connection.objects.filter(
                 stop=stop).filter(
                 stop=next_stop).first().duration.total_seconds() if Connection.objects.filter(
-                    stop=stop).filter(stop=next_stop).count() else 0
+                stop=stop).filter(
+                stop=next_stop).count() else 0
 
             returnDict['connections'].append({
                 'link': [
@@ -81,8 +88,5 @@ def d3_tree(request):
                 ],
                 'duration': duration
             })
-
-
-
 
     return JsonResponse(returnDict, encoder=DjangoJSONEncoder)
