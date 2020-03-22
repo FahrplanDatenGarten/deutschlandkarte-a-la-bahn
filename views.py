@@ -8,9 +8,9 @@ from django.http import JsonResponse
 
 from core.models import (Agency, Source, Stop, StopID, StopIDKind,
                          StopLocation, StopName)
-from .models import Connection
 
 from . import STOPS
+from .models import Connection
 
 
 def convert_toJson(request):

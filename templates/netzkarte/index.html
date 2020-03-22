@@ -1,43 +1,54 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head %}
-    <script src="{% static "d3.js" %}"></script>
-    <script>
-        var d3_geojson_url = "{% static '4_niedrig.geojson' %}";
-        var d3_api_url = "https://fahrplandatengarten.de/netzkarte/d3api";
-        {#var d3_api_url = '{% url "netzkarte:d3api" %}'#}
-    </script>
+<script src="{% static "d3.js" %}"></script>
+<script>
+    var d3_geojson_url = "{% static '4_niedrig.geojson' %}";
+    var d3_api_url = "https://fahrplandatengarten.de/netzkarte/d3api";
+    {#var d3_api_url = '{% url "netzkarte:d3api" %}'#}
+</script>
 {% endblock %}
 {% block content %}
-    <h1 class="title is-1 has-text-centered">Netzkarte</h1>
-    <div class="columns">
-      <div class="column is-2 has-text-left" id="legend">
-        <svg width="20" height="20">
-          <circle cx="5" cy="5" r="5" fill="#EC0016" />
-        </svg>
-        Stadt
-        <br>
-        <svg width="20" height="20">
-          <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgba(0,0,0,0.5);stroke-width:2" />
-        </svg>
-        Schnellere Verbindung
-        <br>
-        <svg width="20" height="20">
-          <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgba(0,0,0,0.5);stroke-width:5" />
-        </svg>
-        Langsamere Verbindung
-      </div>
-      <div class="column">
-          <svg id="net" style="height: 800px; width: 800px"></svg>
-      </div>
+<h1 class="title is-1 has-text-centered">Netzkarte</h1>
+<div class="columns">
+    <div class="column is-3 has-text-left" id="legend">
+        <div class="box">
+            <div class="columns is-vcentered">
+                <div class="column is-one-quarter">
+                    <svg width="10" height="10">
+                        <circle cx="5" cy="5" r="5" fill="#EC0016" />
+                    </svg>
+                </div>
+                <div class="column">
+                    Stadt
+                </div>
+            </div>
+            <div class="columns is-vcentered">
+                <div class="column is-one-quarter">
+                    <svg width="20" height="20">
+                        <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgba(0,0,0,0.5);stroke-width:2" />
+                    </svg>
+                </div>
+                <div class="column">
+                    Schnellere Verbindung
+                </div>
+            </div>
+            <div class="columns is-vcentered">
+                <div class="column is-one-quarter">
+                    <svg width="20" height="20">
+                        <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgba(0,0,0,0.5);stroke-width:5" />
+                    </svg>
+                </div>
+                <div class="column">
+                    Langsamere Verbindung
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="column is-7">
+        <div id="net"></div>
+    </div>
+</div>
 
-    <style>
-      #legend{
-        background-color: grey;
-        margin-left: 5%;
-      }
-    </style>
-
-    <script src="{% static "create_map.js" %}"></script>
+<script src="{% static "create_map.js" %}"></script>
 {% endblock %}
