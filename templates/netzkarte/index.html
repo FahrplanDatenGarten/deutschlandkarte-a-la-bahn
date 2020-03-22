@@ -10,9 +10,34 @@
 {% endblock %}
 {% block content %}
     <h1 class="title is-1 has-text-centered">Netzkarte</h1>
-    <div class="columns is-centered">
-        <svg id="net" style="height: 800px; width: 800px"></svg>
+    <div class="columns">
+      <div class="column is-2 has-text-left" id="legend">
+        <svg width="20" height="20">
+          <circle cx="5" cy="5" r="5" fill="green" />
+        </svg>
+        Stadt
+        <br>
+        <svg width="20" height="20">
+          <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgba(0,0,0,0.5);stroke-width:2" />
+        </svg>
+        Schnellere Verbindung
+        <br>
+        <svg width="20" height="20">
+          <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgba(0,0,0,0.5);stroke-width:5" />
+        </svg>
+        Langsamere Verbindung
+      </div>
+      <div class="column">
+          <svg id="net" style="height: 800px; width: 800px"></svg>
+      </div>
     </div>
+
+    <style>
+      #legend{
+        background-color: grey;
+        margin-left: 5%;
+      }
+    </style>
 
     <script src="{% static "create_map.js" %}"></script>
 {% endblock %}
