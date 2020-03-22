@@ -62,7 +62,20 @@ function ready(param) {
                 return JSON.stringify(path_data.link[0]) != JSON.stringify(d.location);
             })
                 .attr("display", "none");
-        });
+        })
+        .on("mouseover", handleMouseOver)
+        .on("mouseout", handleMouseOut);
+            
+        function handleMouseOver(d, i) {  // Add interactivity
+            // show station names
+            svg1.append("text").text(d.name)
+                .attr("transform", "translate(" + projection(d.location)+")")
+        };
+        
 
+        function handleMouseOut(d, i) {
+            // removing station names
+            svg1.selectAll("text").remove()
+        };
 
 }
