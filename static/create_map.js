@@ -23,7 +23,7 @@ function ready(param) {
         .append("path")
         .attr("d", d3.geoPath()
             .projection(projection))
-        .attr("fill", "#5b67bf");
+        .attr("fill", "#EC0016");
 
     var lineGenerator = d3.line();
     var pathGroup = svg1.append("g");
@@ -31,8 +31,8 @@ function ready(param) {
         .data(param[1]['connections'])
         .enter()
         .append("path")
-        .attr("stroke", "black")
-        .attr("fill", "black")
+        .attr("stroke", "#000000")
+        .attr("fill", "#000000")
         .attr("d", function (d, i) {
             return lineGenerator(d.link.map(projection))
         })
@@ -49,7 +49,7 @@ function ready(param) {
         .enter()
         .append("circle")
         .attr("r", 5)
-        .attr("fill", "green")
+        .attr("fill", "#ffd800")
         .attr("transform", function (d, i) {
             return "translate(" + projection(d.location) + ")"
         })
