@@ -25,8 +25,7 @@ class Command(BaseCommand):
             for end in STOPS:
                 if start == end:
                     continue
-
-                journeys = client.journeys(start, end)
+                journeys = client.journeys(start, end, date=datetime.datetime.now())
 
                 stops = [
                     Stop.objects.get(stopid__name=start),
