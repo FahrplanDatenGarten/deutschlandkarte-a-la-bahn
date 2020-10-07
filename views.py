@@ -1,14 +1,8 @@
-import datetime
-import json
-import os
-
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 from django.http import JsonResponse
 
-from core.models import (Agency, Source, Stop, StopID, StopIDKind,
-                         StopLocation, StopName)
-
+from core.models import Stop
 from . import STOPS
 from .models import Connection
 
@@ -19,14 +13,18 @@ def convert_toJson(request):
     }
 
     for stop_id in STOPS:
-        stop = Stop.objects.get(stopid__name=stop_id)
+        stop = Stop.objects.get(
+            stopid__external_id=stop_id,
+            stopid__kind__name='eva',
+            stopid__kind__provider__internal_name='db'
+        )
         returnDict['connections'][stop_id] = {
             'stationID': stop_id,
-            'stationName': stop.stopname_set.first().name,
+            'stationName': stop.name,
             'duration': {c.stop.get(
-                ~Q(id=stop.pk)).stopid_set.first().name: c.duration.total_seconds() for c in stop.connection_set.all()},
-            'lat': stop.stoplocation_set.first().latitude if stop.stoplocation_set.count() else 0,
-            'lon': stop.stoplocation_set.first().longitude if stop.stoplocation_set.count() else 0,
+                ~Q(id=stop.pk)).stopid_set.first().external_id: c.duration.total_seconds() for c in stop.connection_set.all()},
+            'lat': stop.latitude if stop.latitude is not None else 0,
+            'lon': stop.longitude if stop.longitude is not None else 0,
         }
 
     returnDict['lines'] = {'nodes': [], 'links': []}
@@ -54,14 +52,18 @@ def d3_tree(request):
     }
 
     for stop_id in STOPS:
-        stop = Stop.objects.get(stopid__name=stop_id)
+        stop = Stop.objects.get(
+            stopid__external_id=stop_id,
+            stopid__kind__name='eva',
+            stopid__kind__provider__internal_name='db'
+        )
         loc = [
-            stop.stoplocation_set.first().longitude if stop.stoplocation_set.count() else 0,
-            stop.stoplocation_set.first().latitude if stop.stoplocation_set.count() else 0,
+            stop.longitude if stop.longitude is not None else 0,
+            stop.latitude if stop.latitude is not None else 0,
         ]
 
         returnDict['stations'].append({
-            'name': stop.stopname_set.first().name,
+            'name': stop.name,
             'location': loc}
         )
 
@@ -69,10 +71,14 @@ def d3_tree(request):
             if next_stop_id == stop_id:
                 continue
 
-            next_stop = Stop.objects.get(stopid__name=next_stop_id)
+            next_stop = Stop.objects.get(
+                stopid__external_id=next_stop_id,
+                stopid__kind__name='eva',
+                stopid__kind__provider__internal_name='db'
+            )
             next_loc = [
-                next_stop.stoplocation_set.first().longitude if next_stop.stoplocation_set.count() else 0,
-                next_stop.stoplocation_set.first().latitude if next_stop.stoplocation_set.count() else 0,
+                next_stop.longitude if next_stop.longitude is not None else 0,
+                next_stop.latitude if next_stop.latitude is not None else 0,
             ]
 
             duration = Connection.objects.filter(

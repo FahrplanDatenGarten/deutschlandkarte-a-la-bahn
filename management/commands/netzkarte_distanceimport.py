@@ -3,14 +3,11 @@
 import datetime
 import statistics
 
-from django.core.management.base import BaseCommand, CommandError
-from django.db.models import Q
+from django.core.management.base import BaseCommand
 from pyhafas import HafasClient
 from pyhafas.profile import DBProfile
 
-from core.models import (Agency, Source, Stop, StopID, StopIDKind,
-                         StopLocation, StopName)
-
+from core.models import Stop
 from ... import STOPS
 from ...models import Connection
 
@@ -29,8 +26,8 @@ class Command(BaseCommand):
                     start, end, date=datetime.datetime.now())
 
                 stops = [
-                    Stop.objects.get(stopid__name=start),
-                    Stop.objects.get(stopid__name=end)
+                    Stop.objects.get(stopid__external_id=start),
+                    Stop.objects.get(stopid__external_id=end)
                 ]
                 cons = Connection.objects.filter(
                     stop=stops[0]).filter(

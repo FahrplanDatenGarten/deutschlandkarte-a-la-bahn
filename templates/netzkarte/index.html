@@ -4,8 +4,7 @@
 <script src="{% static "d3.js" %}"></script>
 <script>
     var d3_geojson_url = "{% static '4_niedrig.geojson' %}";
-    var d3_api_url = "https://fahrplandatengarten.de/netzkarte/d3api";
-    {#var d3_api_url = '{% url "netzkarte:d3api" %}'#}
+    var d3_api_url = '{% url "netzkarte:d3api" %}'
 </script>
 {% endblock %}
 {% block content %}
