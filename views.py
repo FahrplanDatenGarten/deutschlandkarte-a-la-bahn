@@ -1,8 +1,8 @@
+from core.models import Stop
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 from django.http import JsonResponse
 
-from core.models import Stop
 from . import STOPS
 from .models import Connection
 

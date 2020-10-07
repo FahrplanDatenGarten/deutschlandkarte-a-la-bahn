@@ -1,6 +1,5 @@
-from django.db import models
-
 from core.models import Stop
+from django.db import models
 
 
 class Connection(models.Model):
