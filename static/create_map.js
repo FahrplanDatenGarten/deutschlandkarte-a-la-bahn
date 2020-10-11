@@ -34,23 +34,25 @@ function ready(param) {
         .append("path")
         .attr("d", d3.geoPath()
             .projection(projection))
-        .attr("fill", "#C0E1D7");
+        .attr("fill", "#9e9e9e");
 
     let lineGenerator = d3.line();
     let pathGroup = svg1.append("g");
+    let myColor = d3.scaleSequential()
+        .interpolator(d3.interpolateRdYlGn)
+        .domain([130, 30]);
     let paths = pathGroup.selectAll("path")
         .data(param[1]['connections'])
         .enter()
         .append("path")
-        .attr("stroke", "#000000")
-        .attr("fill", "#000000")
         .attr("d", function (d, i) {
             return lineGenerator(d.link.map(projection))
         })
-        .attr("stroke-width", function (d) {
-            return (d.duration / this.getTotalLength()) / 8
+        .attr("stroke", function (d) {
+            return myColor(d.duration / this.getTotalLength())
         })
-        .attr("opacity", 0.2)
+        .attr("stroke-width", 7)
+        .attr("opacity", 1)
         .attr("display", "none");
 
     svg1.append("g")
