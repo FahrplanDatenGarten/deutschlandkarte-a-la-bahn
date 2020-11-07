@@ -10,7 +10,7 @@ class ConnectionAdmin(admin.ModelAdmin):
         'stop_list')
 
     def stop_list(self, obj):
-        return ", ".join([str(StopAdmin.primary_stop_name(s))
+        return ", ".join([str(s.name)
                           for s in obj.stop.all()])
 
 
