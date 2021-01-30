@@ -8,53 +8,56 @@
 </script>
 {% endblock %}
 {% block content %}
-<h1 class="title is-1 has-text-centered">Netzkarte</h1>
-<div class="columns">
-    <div class="column is-3 has-text-left" id="legend">
-        <div class="box" style="background-color: #9e9e9e">
-            <div class="columns is-vcentered">
-                <div class="column is-one-quarter">
-                    <svg width="20" height="20">
-                        <circle cx="10" cy="10" r="5" fill="#EC0016" />
-                    </svg>
+<h1>Netzkarte</h1>
+<div class="row">
+    <div class="col-lg-3" id="legend">
+        <div class="card border-secondary mb-3">
+            <div class="card-body">
+                <h4 class="card-title">Legende</h4>
+                <div class="row">
+                    <div class="col-3">
+                        <svg width="20" height="20">
+                            <circle cx="10" cy="10" r="5" fill="#EC0016" />
+                        </svg>
+                    </div>
+                    <div class="col-9">
+                        Stadt
+                    </div>
                 </div>
-                <div class="column has-text-black">
-                    Stadt
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <svg width="20" height="20">
+                            <line x1="0" y1="0" x2="200" y2="200" style="stroke:#006837;stroke-width:10" />
+                        </svg>
+                    </div>
+                    <div class="col-9">
+                        Schnelle Verbindung
+                    </div>
                 </div>
-            </div>
-            <div class="columns is-vcentered">
-                <div class="column is-one-quarter">
-                    <svg width="20" height="20">
-                        <line x1="0" y1="0" x2="200" y2="200" style="stroke:#006837;stroke-width:10" />
-                    </svg>
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <svg width="20" height="20">
+                            <line x1="0" y1="0" x2="200" y2="200" style="stroke:#ffffbf;stroke-width:10" />
+                        </svg>
+                    </div>
+                    <div class="col-9">
+                        Mittelschnelle Verbindung
+                    </div>
                 </div>
-                <div class="column has-text-black">
-                    Schnellere Verbindung
-                </div>
-            </div>
-            <div class="columns is-vcentered">
-                <div class="column is-one-quarter">
-                    <svg width="20" height="20">
-                        <line x1="0" y1="0" x2="200" y2="200" style="stroke:#ffffbf;stroke-width:10" />
-                    </svg>
-                </div>
-                <div class="column has-text-black">
-                    Mittelschnelle Verbindung
-                </div>
-            </div>
-            <div class="columns is-vcentered">
-                <div class="column is-one-quarter">
-                    <svg width="20" height="20">
-                        <line x1="0" y1="0" x2="200" y2="200" style="stroke:#d73027;stroke-width:10" />
-                    </svg>
-                </div>
-                <div class="column has-text-black">
-                    Langsamere Verbindung
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <svg width="20" height="20">
+                            <line x1="0" y1="0" x2="200" y2="200" style="stroke:#d73027;stroke-width:10" />
+                        </svg>
+                    </div>
+                    <div class="col-9">
+                        Langsame Verbindung
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="column is-7">
+    <div class="col-lg-7">
         <div id="net"></div>
     </div>
 </div>
