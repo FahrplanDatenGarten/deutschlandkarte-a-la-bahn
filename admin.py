@@ -1,4 +1,4 @@
-from core.admin import StopAdmin
+from fahrplandatengarten.core.admin import StopAdmin
 from django.contrib import admin
 
 from .models import Connection

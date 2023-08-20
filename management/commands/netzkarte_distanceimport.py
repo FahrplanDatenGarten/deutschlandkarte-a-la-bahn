@@ -3,7 +3,7 @@
 import datetime
 import statistics
 
-from core.models import Stop
+from fahrplandatengarten.core.models import Stop
 from django.core.management.base import BaseCommand
 from pyhafas import HafasClient
 from pyhafas.profile import DBProfile

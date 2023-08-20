@@ -1,4 +1,4 @@
-from core.models import Stop
+from fahrplandatengarten.core.models import Stop
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 from django.http import JsonResponse

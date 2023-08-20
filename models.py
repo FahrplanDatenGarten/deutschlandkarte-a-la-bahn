@@ -1,4 +1,4 @@
-from core.models import Stop
+from fahrplandatengarten.core.models import Stop
 from django.db import models
 
 
